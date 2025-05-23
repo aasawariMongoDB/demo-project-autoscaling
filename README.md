@@ -203,7 +203,7 @@ kubectl delete -f deployment.yaml
 kubectl delete -f hpa.yaml
 
 # Delete EKS cluster
-eksctl delete cluster --name autoscaling-cluster --region ap-south-1
+eksctl delete cluster --name autoscaling-cluster --region us-east-1
 ```
 
 ## 📝 Notes
@@ -217,7 +217,7 @@ eksctl delete cluster --name autoscaling-cluster --region ap-south-1
 
 Remember to delete your EKS cluster after testing to avoid AWS charges:
 ```bash
-eksctl delete cluster --name autoscaling-cluster --region ap-south-1
+eksctl delete cluster --name autoscaling-cluster --region us-east-1
 ```
 
 ---
