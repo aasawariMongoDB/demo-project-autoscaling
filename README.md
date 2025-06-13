@@ -143,8 +143,3 @@ eksctl delete cluster --name autoscaling-cluster --region us-east-1
 
 EKS incurs charges even when idle. Remember to delete the cluster when finished.
 
----
-
-**Happy Scaling! 🚀**
-
-```
