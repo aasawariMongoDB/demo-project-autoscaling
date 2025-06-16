@@ -46,7 +46,7 @@ docker buildx build --platform linux/amd64 -t aasawarimongodb/autoscaling-spring
 
 ```bash
 eksctl create cluster \
-  --name autoscaling-cluster \
+  --name autoscaling \
   --region us-east-1 \
   --nodegroup-name app-nodes \
   --node-type t3.medium \
@@ -62,14 +62,14 @@ eksctl create cluster \
 
 ```bash
 # Connect to the new cluster
-aws eks update-kubeconfig --region us-east-1 --name autoscaling-cluster
+aws eks update-kubeconfig --region us-east-1 --name autoscaling
 
 # Install metrics server (required by HPA)
+kubectl delete -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 # Deploy the Spring Boot app and HPA
 kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
 kubectl apply -f k8s/hpa.yaml
 
 # Ensure only 1 pod is running initially
@@ -134,7 +134,7 @@ To avoid AWS charges:
 ```bash
 kubectl delete all --all
 kubectl delete -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-eksctl delete cluster --name autoscaling-cluster --region us-east-1
+eksctl delete cluster --name autoscaling --region us-east-1
 ```
 
 ---
